@@ -1753,21 +1753,26 @@ summary {
 
 
 <!-- rnb-text-begin -->
+<div id="expected-mse" class="section level2">
+<h2>Expected MSE:</h2>
+</div>
 <div id="questions" class="section level2">
 <h2>Questions</h2>
 <ul>
 <li>What is the correct protocol for dealing with missing values in some X? In reg-world to solve the problem ofX having missings for some observations, one creates a new dummy, <span class="math inline">\(X_{mi}\)</span>, to indicate missing values and then replaces the missing values in X by any arbitrary number (eg: zero, or the average of X) and then include both X and <span class="math inline">\(X_{mi}\)</span> in the regression. We did something similar for the missings in our variables, replacing them by the average of X. However, we are woried about the ML algorithm not picking up the missing indicator dummy (<span class="math inline">\(X_{mi}\)</span>), making the procedure sensitive to the imputed value.</li>
+<li>How to incorporate the fact that Y is a count data into the ML estimation? In regression we would use a poisson link function. But we did not incorporate that into our procedure.</li>
 </ul>
 </div>
 <div id="lessons-learnt" class="section level2">
 <h2>Lessons learnt</h2>
-</div>
-<div id="expected-mse" class="section level2">
-<h2>Expected MSE</h2>
+<ul>
+<li>We spent 95% of the time to understand and prepare the data</li>
+<li>Prediction is hard!</li>
+</ul>
 <!-- rnb-text-end -->
 </div>
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIlByZWRpY2l0b24gY2hhbGxlbmdlIG5vdGVzLiBBcHAgLSBNTCAyMDIwIg0KYXV0aG9yOg0KLSBKdWFuIElnbmFjaW8NCi0gTHVjYXMgTWF0aW9uDQpvdXRwdXQ6DQogIHBkZl9kb2N1bWVudDogZGVmYXVsdA0KICBodG1sX25vdGVib29rOiBkZWZhdWx0DQotLS0NCg0KIyMgUXVlc3Rpb25zDQoNCg0KLSBXaGF0IGlzIHRoZSBjb3JyZWN0IHByb3RvY29sIGZvciBkZWFsaW5nIHdpdGggbWlzc2luZyB2YWx1ZXMgaW4gc29tZSBYPyBJbiByZWctd29ybGQgdG8gc29sdmUgdGhlIHByb2JsZW0gb2ZYIGhhdmluZyBtaXNzaW5ncyBmb3Igc29tZSBvYnNlcnZhdGlvbnMsIG9uZSBjcmVhdGVzIGEgbmV3IGR1bW15LCAkWF97bWl9JCwgIHRvIGluZGljYXRlIG1pc3NpbmcgdmFsdWVzIGFuZCB0aGVuIHJlcGxhY2VzIHRoZSBtaXNzaW5nIHZhbHVlcyBpbiBYIGJ5IGFueSBhcmJpdHJhcnkgbnVtYmVyIChlZzogemVybywgb3IgdGhlIGF2ZXJhZ2Ugb2YgWCkgYW5kIHRoZW4gaW5jbHVkZSBib3RoIFggYW5kICRYX3ttaX0kIGluIHRoZSByZWdyZXNzaW9uLiBXZSBkaWQgc29tZXRoaW5nIHNpbWlsYXIgZm9yIHRoZSBtaXNzaW5ncyBpbiBvdXIgdmFyaWFibGVzLCByZXBsYWNpbmcgdGhlbSBieSB0aGUgYXZlcmFnZSBvZiBYLiBIb3dldmVyLCB3ZSBhcmUgd29yaWVkIGFib3V0IHRoZSBNTCBhbGdvcml0aG0gbm90IHBpY2tpbmcgdXAgdGhlIG1pc3NpbmcgaW5kaWNhdG9yIGR1bW15ICgkWF97bWl9JCksIG1ha2luZyB0aGUgcHJvY2VkdXJlIHNlbnNpdGl2ZSB0byB0aGUgaW1wdXRlZCB2YWx1ZS4NCg0KDQoNCiMjIExlc3NvbnMgbGVhcm50DQoNCg0KIyMgRXhwZWN0ZWQgTVNFDQoNCg0K</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIlByZWRpY2l0b24gY2hhbGxlbmdlIG5vdGVzLiBBcHAgLSBNTCAyMDIwIg0KYXV0aG9yOg0KLSBKdWFuIElnbmFjaW8NCi0gTHVjYXMgTWF0aW9uDQpvdXRwdXQ6DQogIHBkZl9kb2N1bWVudDogZGVmYXVsdA0KICBodG1sX25vdGVib29rOiBkZWZhdWx0DQotLS0NCg0KIyMgRXhwZWN0ZWQgTVNFOiANCg0KDQojIyBRdWVzdGlvbnMNCg0KLSBXaGF0IGlzIHRoZSBjb3JyZWN0IHByb3RvY29sIGZvciBkZWFsaW5nIHdpdGggbWlzc2luZyB2YWx1ZXMgaW4gc29tZSBYPyBJbiByZWctd29ybGQgdG8gc29sdmUgdGhlIHByb2JsZW0gb2ZYIGhhdmluZyBtaXNzaW5ncyBmb3Igc29tZSBvYnNlcnZhdGlvbnMsIG9uZSBjcmVhdGVzIGEgbmV3IGR1bW15LCAkWF97bWl9JCwgIHRvIGluZGljYXRlIG1pc3NpbmcgdmFsdWVzIGFuZCB0aGVuIHJlcGxhY2VzIHRoZSBtaXNzaW5nIHZhbHVlcyBpbiBYIGJ5IGFueSBhcmJpdHJhcnkgbnVtYmVyIChlZzogemVybywgb3IgdGhlIGF2ZXJhZ2Ugb2YgWCkgYW5kIHRoZW4gaW5jbHVkZSBib3RoIFggYW5kICRYX3ttaX0kIGluIHRoZSByZWdyZXNzaW9uLiBXZSBkaWQgc29tZXRoaW5nIHNpbWlsYXIgZm9yIHRoZSBtaXNzaW5ncyBpbiBvdXIgdmFyaWFibGVzLCByZXBsYWNpbmcgdGhlbSBieSB0aGUgYXZlcmFnZSBvZiBYLiBIb3dldmVyLCB3ZSBhcmUgd29yaWVkIGFib3V0IHRoZSBNTCBhbGdvcml0aG0gbm90IHBpY2tpbmcgdXAgdGhlIG1pc3NpbmcgaW5kaWNhdG9yIGR1bW15ICgkWF97bWl9JCksIG1ha2luZyB0aGUgcHJvY2VkdXJlIHNlbnNpdGl2ZSB0byB0aGUgaW1wdXRlZCB2YWx1ZS4NCi0gSG93IHRvIGluY29ycG9yYXRlIHRoZSBmYWN0IHRoYXQgWSBpcyBhIGNvdW50IGRhdGEgIGludG8gdGhlIE1MIGVzdGltYXRpb24/IEluIHJlZ3Jlc3Npb24gd2Ugd291bGQgdXNlIGEgcG9pc3NvbiBsaW5rIGZ1bmN0aW9uLiBCdXQgd2UgZGlkIG5vdCBpbmNvcnBvcmF0ZSB0aGF0IGludG8gb3VyIHByb2NlZHVyZS4NCg0KIyMgTGVzc29ucyBsZWFybnQNCg0KLSBXZSBzcGVudCA5NSUgb2YgdGhlIHRpbWUgdG8gdW5kZXJzdGFuZCBhbmQgcHJlcGFyZSB0aGUgZGF0YQ0KLSBQcmVkaWN0aW9uIGlzIGhhcmQhDQoNCg0KDQo=</div>
 
 
 
