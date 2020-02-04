@@ -1753,26 +1753,29 @@ summary {
 
 
 <!-- rnb-text-begin -->
-<div id="expected-mse" class="section level2">
-<h2>Expected MSE:</h2>
+<div id="expected-mse-7.5" class="section level2">
+<h2>Expected MSE: 7.5</h2>
 </div>
 <div id="questions" class="section level2">
 <h2>Questions</h2>
 <ul>
-<li>What is the correct protocol for dealing with missing values in some X? In reg-world to solve the problem ofX having missings for some observations, one creates a new dummy, <span class="math inline">\(X_{mi}\)</span>, to indicate missing values and then replaces the missing values in X by any arbitrary number (eg: zero, or the average of X) and then include both X and <span class="math inline">\(X_{mi}\)</span> in the regression. We did something similar for the missings in our variables, replacing them by the average of X. However, we are woried about the ML algorithm not picking up the missing indicator dummy (<span class="math inline">\(X_{mi}\)</span>), making the procedure sensitive to the imputed value.</li>
+<li>What is the correct protocol for dealing with missing values in some X? In reg-world to solve the problem ofX having missings for some observations, one creates a new dummy, <span class="math inline">\(I_{Xmi}\)</span>, to indicate missing values and then replaces the missing values in X by any arbitrary number (eg: zero, or the average of X) and then include both X and <span class="math inline">\(I_{Xmi}\)</span> in the regression. We did something similar for the missings in our variables, replacing them by the average of X. However, we are woried about the ML algorithm not picking up the missing indicator dummy (<span class="math inline">\(I_{Xmi}\)</span>), making the procedure sensitive to the imputed value.</li>
 <li>How to incorporate the fact that Y is a count data into the ML estimation? In regression we would use a poisson link function. But we did not incorporate that into our procedure.</li>
 </ul>
 </div>
 <div id="lessons-learnt" class="section level2">
 <h2>Lessons learnt</h2>
 <ul>
+<li>Juan: Missings are also data. A non response is acatually a usefull information. Adding a dummy gives the model the possibility to pick this information.</li>
 <li>We spent 95% of the time to understand and prepare the data</li>
+<li>Lucas : ML stack in R</li>
+<li>Beucause we had relativelly small number of observations, we needed to be more thoughtful and parcimonious in choosing variables to include and creating features to reduced the number of variables fed to the model.</li>
 <li>Prediction is hard!</li>
 </ul>
 <!-- rnb-text-end -->
 </div>
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIlByZWRpY2l0b24gY2hhbGxlbmdlIG5vdGVzLiBBcHAgLSBNTCAyMDIwIg0KYXV0aG9yOg0KLSBKdWFuIElnbmFjaW8NCi0gTHVjYXMgTWF0aW9uDQpvdXRwdXQ6DQogIHBkZl9kb2N1bWVudDogZGVmYXVsdA0KICBodG1sX25vdGVib29rOiBkZWZhdWx0DQotLS0NCg0KIyMgRXhwZWN0ZWQgTVNFOiANCg0KDQojIyBRdWVzdGlvbnMNCg0KLSBXaGF0IGlzIHRoZSBjb3JyZWN0IHByb3RvY29sIGZvciBkZWFsaW5nIHdpdGggbWlzc2luZyB2YWx1ZXMgaW4gc29tZSBYPyBJbiByZWctd29ybGQgdG8gc29sdmUgdGhlIHByb2JsZW0gb2ZYIGhhdmluZyBtaXNzaW5ncyBmb3Igc29tZSBvYnNlcnZhdGlvbnMsIG9uZSBjcmVhdGVzIGEgbmV3IGR1bW15LCAkWF97bWl9JCwgIHRvIGluZGljYXRlIG1pc3NpbmcgdmFsdWVzIGFuZCB0aGVuIHJlcGxhY2VzIHRoZSBtaXNzaW5nIHZhbHVlcyBpbiBYIGJ5IGFueSBhcmJpdHJhcnkgbnVtYmVyIChlZzogemVybywgb3IgdGhlIGF2ZXJhZ2Ugb2YgWCkgYW5kIHRoZW4gaW5jbHVkZSBib3RoIFggYW5kICRYX3ttaX0kIGluIHRoZSByZWdyZXNzaW9uLiBXZSBkaWQgc29tZXRoaW5nIHNpbWlsYXIgZm9yIHRoZSBtaXNzaW5ncyBpbiBvdXIgdmFyaWFibGVzLCByZXBsYWNpbmcgdGhlbSBieSB0aGUgYXZlcmFnZSBvZiBYLiBIb3dldmVyLCB3ZSBhcmUgd29yaWVkIGFib3V0IHRoZSBNTCBhbGdvcml0aG0gbm90IHBpY2tpbmcgdXAgdGhlIG1pc3NpbmcgaW5kaWNhdG9yIGR1bW15ICgkWF97bWl9JCksIG1ha2luZyB0aGUgcHJvY2VkdXJlIHNlbnNpdGl2ZSB0byB0aGUgaW1wdXRlZCB2YWx1ZS4NCi0gSG93IHRvIGluY29ycG9yYXRlIHRoZSBmYWN0IHRoYXQgWSBpcyBhIGNvdW50IGRhdGEgIGludG8gdGhlIE1MIGVzdGltYXRpb24/IEluIHJlZ3Jlc3Npb24gd2Ugd291bGQgdXNlIGEgcG9pc3NvbiBsaW5rIGZ1bmN0aW9uLiBCdXQgd2UgZGlkIG5vdCBpbmNvcnBvcmF0ZSB0aGF0IGludG8gb3VyIHByb2NlZHVyZS4NCg0KIyMgTGVzc29ucyBsZWFybnQNCg0KLSBXZSBzcGVudCA5NSUgb2YgdGhlIHRpbWUgdG8gdW5kZXJzdGFuZCBhbmQgcHJlcGFyZSB0aGUgZGF0YQ0KLSBQcmVkaWN0aW9uIGlzIGhhcmQhDQoNCg0KDQo=</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIlByZWRpY2l0b24gY2hhbGxlbmdlIG5vdGVzLiBBcHAgLSBNTCAyMDIwIg0KYXV0aG9yOg0KLSBKdWFuIElnbmFjaW8NCi0gTHVjYXMgTWF0aW9uDQpvdXRwdXQ6DQogIHBkZl9kb2N1bWVudDogZGVmYXVsdA0KICBodG1sX25vdGVib29rOiBkZWZhdWx0DQotLS0NCg0KIyMgRXhwZWN0ZWQgTVNFOiA3LjUgDQoNCg0KIyMgUXVlc3Rpb25zDQoNCi0gV2hhdCBpcyB0aGUgY29ycmVjdCBwcm90b2NvbCBmb3IgZGVhbGluZyB3aXRoIG1pc3NpbmcgdmFsdWVzIGluIHNvbWUgWD8gSW4gcmVnLXdvcmxkIHRvIHNvbHZlIHRoZSBwcm9ibGVtIG9mWCBoYXZpbmcgbWlzc2luZ3MgZm9yIHNvbWUgb2JzZXJ2YXRpb25zLCBvbmUgY3JlYXRlcyBhIG5ldyBkdW1teSwgJElfe1htaX0kLCAgdG8gaW5kaWNhdGUgbWlzc2luZyB2YWx1ZXMgYW5kIHRoZW4gcmVwbGFjZXMgdGhlIG1pc3NpbmcgdmFsdWVzIGluIFggYnkgYW55IGFyYml0cmFyeSBudW1iZXIgKGVnOiB6ZXJvLCBvciB0aGUgYXZlcmFnZSBvZiBYKSBhbmQgdGhlbiBpbmNsdWRlIGJvdGggWCBhbmQgJElfe1htaX0kIGluIHRoZSByZWdyZXNzaW9uLiBXZSBkaWQgc29tZXRoaW5nIHNpbWlsYXIgZm9yIHRoZSBtaXNzaW5ncyBpbiBvdXIgdmFyaWFibGVzLCByZXBsYWNpbmcgdGhlbSBieSB0aGUgYXZlcmFnZSBvZiBYLiBIb3dldmVyLCB3ZSBhcmUgd29yaWVkIGFib3V0IHRoZSBNTCBhbGdvcml0aG0gbm90IHBpY2tpbmcgdXAgdGhlIG1pc3NpbmcgaW5kaWNhdG9yIGR1bW15ICgkSV97WG1pfSQpLCBtYWtpbmcgdGhlIHByb2NlZHVyZSBzZW5zaXRpdmUgdG8gdGhlIGltcHV0ZWQgdmFsdWUuDQotIEhvdyB0byBpbmNvcnBvcmF0ZSB0aGUgZmFjdCB0aGF0IFkgaXMgYSBjb3VudCBkYXRhICBpbnRvIHRoZSBNTCBlc3RpbWF0aW9uPyBJbiByZWdyZXNzaW9uIHdlIHdvdWxkIHVzZSBhIHBvaXNzb24gbGluayBmdW5jdGlvbi4gQnV0IHdlIGRpZCBub3QgaW5jb3Jwb3JhdGUgdGhhdCBpbnRvIG91ciBwcm9jZWR1cmUuDQoNCiMjIExlc3NvbnMgbGVhcm50DQoNCi0gSnVhbjogTWlzc2luZ3MgYXJlIGFsc28gZGF0YS4gQSBub24gcmVzcG9uc2UgaXMgYWNhdHVhbGx5IGEgdXNlZnVsbCBpbmZvcm1hdGlvbi4gQWRkaW5nIGEgZHVtbXkgZ2l2ZXMgdGhlIG1vZGVsIHRoZSBwb3NzaWJpbGl0eSB0byBwaWNrIHRoaXMgaW5mb3JtYXRpb24uIA0KLSBXZSBzcGVudCA5NSUgb2YgdGhlIHRpbWUgdG8gdW5kZXJzdGFuZCBhbmQgcHJlcGFyZSB0aGUgZGF0YQ0KLSBMdWNhcyA6IE1MIHN0YWNrIGluIFINCi0gQmV1Y2F1c2Ugd2UgaGFkIHJlbGF0aXZlbGx5IHNtYWxsIG51bWJlciBvZiBvYnNlcnZhdGlvbnMsIHdlIG5lZWRlZCB0byBiZSBtb3JlIHRob3VnaHRmdWwgYW5kIHBhcmNpbW9uaW91cyBpbiBjaG9vc2luZyB2YXJpYWJsZXMgdG8gaW5jbHVkZSBhbmQgY3JlYXRpbmcgZmVhdHVyZXMgdG8gcmVkdWNlZCB0aGUgbnVtYmVyIG9mIHZhcmlhYmxlcyBmZWQgdG8gdGhlIG1vZGVsLg0KLSBQcmVkaWN0aW9uIGlzIGhhcmQhDQoNCg0KDQo=</div>
 
 
 
