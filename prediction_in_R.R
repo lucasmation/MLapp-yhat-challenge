@@ -6,6 +6,7 @@ library(caret)
 library(dvmisc)
 library(rsq)
 library(boot)
+library(fastDummies)
 
 
 names(d) %>% tail
@@ -171,8 +172,8 @@ control <- trainControl(method="cv", number=10)
 metric <- "Accuracy"
 
 
+dF <- dF %>% dummy_cols(select_columns=c('health_status_2015'))
 
-dF %>% lm(drinks ~ age + factor(race) + female,.) %>% summary %>% .$r.squared
 dF %>% lm(drinks ~ 
             age + factor(race) + female + 
             inc_fam_16t22 + inc_fam_16t22_MI + inc_fam_2010t2015 + inc_fam_2010t2015_MI + 
@@ -191,14 +192,16 @@ dF %>% lm(drinks ~
   get_mse( var.estimate = FALSE)
   summary %>% .$residuals %>% mse
   
-  
+
+dT[health_status_2015==99,health_status_2015]   
 poisson.model <- dF %>% 
       glm(drinks ~ 
             age + factor(race) + female + 
             inc_fam_16t22 + inc_fam_16t22_MI + inc_fam_2010t2015 + inc_fam_2010t2015_MI + 
             ave_hh_size_2010t2015 + ave_pov_2010t2015 + ave_totwork_h + 
             kids6_2015 + ave_kids6 + kids6_mi + nkids_mi + factor(marriage_status) +
-            factor(health_status_2015),
+            health_status_2015_3 + health_status_2015_2 + health_status_2015_1 +
+            health_status_2015_4 + health_status_2015_5 + health_status_2015_99,
           .,family="poisson")
 poisson.model %>% rsq(adj=TRUE)
 poisson.model %>% get_mse( var.estimate = FALSE)
@@ -209,7 +212,9 @@ muhat <- poisson.model$fitted
 poisson.diag <- glm.diag(poisson.model)
 mean((poisson.model$y-muhat)^2/(1-poisson.diag$h)^2)
 
-dF %>% cv.glm(poisson.model,K=10)
+cv.err <- dF %>% cv.glm(poisson.model,K=10)
+cv.err$delta
+
 
   
 summary %>% .$residuals %>% mse
